@@ -1,5 +1,7 @@
 # Nix-Tasks
 
+Nix Tasks is a feature allowing users to create lists which are allows divide command's actions to tasks which can be execute by a cpu core directly
+
 [![Open Collective supporters](https://opencollective.com/nixos/tiers/supporter/badge.svg?label=Supporters&color=brightgreen)](https://opencollective.com/nixos)
 [![Test](https://github.com/NixOS/nix/workflows/Test/badge.svg)](https://github.com/NixOS/nix/actions)
 
