@@ -41,7 +41,7 @@ bool createUserEnv(EvalState & state, DrvInfos & elems,
         if (auto drvPath = i.queryDrvPath())
             drvsToBuild.push_back({*drvPath});
 
-    debug(format("building user environment dependencies"));
+    debug("building user environment dependencies");
     state.store->buildPaths(
         toDerivedPaths(drvsToBuild),
         state.repair ? bmRepair : bmNormal);
@@ -119,9 +119,7 @@ bool createUserEnv(EvalState & state, DrvInfos & elems,
     /* Construct a Nix expression that calls the user environment
        builder with the manifest as argument. */
     auto attrs = state.buildBindings(3);
-    attrs.alloc("manifest").mkString(
-        state.store->printStorePath(manifestFile),
-        {state.store->printStorePath(manifestFile)});
+    state.mkStorePathString(manifestFile, attrs.alloc("manifest"));
     attrs.insert(state.symbols.create("derivations"), &manifest);
     Value args;
     args.mkAttrs(attrs);
@@ -132,7 +130,7 @@ bool createUserEnv(EvalState & state, DrvInfos & elems,
     /* Evaluate it. */
     debug("evaluating user environment builder");
     state.forceValue(topLevel, [&]() { return topLevel.determinePos(noPos); });
-    PathSet context;
+    NixStringContext context;
     Attr & aDrvPath(*topLevel.attrs->find(state.sDrvPath));
     auto topLevelDrv = state.coerceToStorePath(aDrvPath.pos, *aDrvPath.value, context, "");
     Attr & aOutPath(*topLevel.attrs->find(state.sOutPath));
@@ -159,7 +157,7 @@ bool createUserEnv(EvalState & state, DrvInfos & elems,
             return false;
         }
 
-        debug(format("switching to new user environment"));
+        debug("switching to new user environment");
         Path generation = createGeneration(ref<LocalFSStore>(store2), profile, topLevelOut);
         switchLink(profile, generation);
     }

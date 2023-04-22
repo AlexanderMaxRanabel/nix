@@ -19,9 +19,12 @@ perl/Makefile.config
 /doc/manual/nix.json
 /doc/manual/conf-file.json
 /doc/manual/builtins.json
+/doc/manual/xp-features.json
 /doc/manual/src/SUMMARY.md
 /doc/manual/src/command-ref/new-cli
 /doc/manual/src/command-ref/conf-file.md
+/doc/manual/src/command-ref/experimental-features-shortlist.md
+/doc/manual/src/contributing/experimental-feature-descriptions.md
 /doc/manual/src/language/builtins.md
 
 # /scripts/
@@ -75,7 +78,7 @@ perl/Makefile.config
 
 # /tests/
 /tests/test-tmp
-/tests/common.sh
+/tests/common/vars-and-functions.sh
 /tests/result*
 /tests/restricted-innocent
 /tests/shell
@@ -103,6 +106,7 @@ outputs/
 
 *.a
 *.o
+*.o.tmp
 *.so
 *.dylib
 *.dll
