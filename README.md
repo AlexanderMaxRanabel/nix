@@ -1,6 +1,6 @@
-# Nix-Tasks
+# Zync
 
-Nix Tasks is a feature allowing users to create lists which are allows divide command's actions to tasks which can be execute by a cpu core directly
+Zync is a 0TRUST package manager. see ZYNC.md for more details
 
 [![Open Collective supporters](https://opencollective.com/nixos/tiers/supporter/badge.svg?label=Supporters&color=brightgreen)](https://opencollective.com/nixos)
 [![Test](https://github.com/NixOS/nix/workflows/Test/badge.svg)](https://github.com/NixOS/nix/actions)
